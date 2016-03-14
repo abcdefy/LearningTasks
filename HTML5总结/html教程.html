@@ -1,0 +1,303 @@
+<!--<!DOCTYPE html>文档声明,首行，顶格写-->
+<!--<heml>:根标签,包括<head>文档头部和<body>文档主体-->
+<!--<head>描述文档基本属性，信息，包括以下几个方面：-->
+<!--1.<title>标题</title>-->
+<!--2.<meta charset:定义文档字符编码，写第一行。 name="keywords"/"description" content="这里是给搜索引擎识别用的" name="viewport" centent="给移动端识别，设定宽高">-->
+<!--3.<link>标签,用来引入favicon icon（浏览器默认会引入名字为favicon.ico的图标，若某界面与整体不同，再手动引入。同时也可以用来引入stylesheet-->
+<!--4.<style>引入style，把样式直接写里面。</style>-->
+<!--cmd+shift+c打开调色板-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="keywords" content="网易云音乐">
+	<meta name="description" content="网易云是一款包含了大量正版音乐的实用型音乐播放软件">
+	<meta name="viewport" content="width=device-width">
+	<link rel="shortcut icon" type="ico" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<style type="text/css">p{color: #2F0072}</style>
+</head>
+<body>
+	
+</body>
+</html>
+
+<!--<body>主体部分，详细内容-->
+<!--1.heml语法-->
+<!--标签放在一对尖括号内，闭合<form></form>或者自闭合<input>，无结束标签-->
+<!-- 标签可以带一个或者多个属性，属性小写，值用双引号引起来 -->
+<!-- 标签可以嵌套，闭合要按照嵌套顺序，要有嵌套缩进 -->
+<!-- 2.常用属性 -->
+<!-- id:规定元素在页面中唯一的标识，可被css获取 -->
+<!-- class：规定元素的类名，页面中统一功能，样式的元素用同一个class名，这样css可以获取这一类的元素 -->
+<!-- 同一个id名在页面中职能出现一次，同一个class名可以出现多次 -->
+<!-- style：样式，在里面写css样式，控制div内信息的样式。但表现和结构混杂，不利于维护。 -->
+<!-- title属性（不是title标签），相当于给页面上的内容加注释（图片，文本都可以） -->
+<!DOCTYPE html>
+<html lang="en">
+<head class="time">
+	<meta charset="UTF-8">
+	<title id="title">Document</title>
+</head>
+<body>
+	<div style="display:none"></div>
+	<a title="鼠标放上去之后显示">里面的内容</a>
+</body>
+</html>
+
+<!-- 3.html主体标签（文档章节） -->
+<!-- 1.表格中灰色交互元素并未被浏览器完全支持 -->
+<!-- 2. 文档章节标签包括body,header,nav,aside,article,section,footer,hx-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body><!-- body中的内容一般都能被用户看到 -->
+<header>页面头部，标题，独立章头部，logo，搜索表单</header>
+	<nav>导航，包括整站导航，本页面导航等等</nav>
+		<aside>表示和整站内容不相关区域，侧边栏，广告栏，插入式信息等</aside>
+		<article>主体部分，独立可重复结构，如blog的帖子，评论，新闻文章，一般也包含header和footer，可嵌套，如blog评论article嵌套在博客文章article之中，相邻article内容无关
+			<header></header>
+				<section>也是主体部分，文章内容的一个区域，一个小节，相邻section内容相关
+					<div id="header，这里是分区名，用来表示些没有标签的内容" 本身没有任何语义，主要用来作为分区，别的内容的容器（如在h和p之外，用class属性来分配格式）>
+					<h1>页面中最大的标题</h1><h6>页面最小的标题</h6>
+					文本：<a href="http://www.baidu.com/#jump跳转至id为jump的锚点／mailto:hengyuwen@outlook.com,hyw1994@qq.com？cc=hyw1994@vip.qq.com&subject=建议&body=body... 点击发送邮件，给两个邮箱，抄送给一个邮箱，主题为建议。/tel:186****0106" target="_self当前窗口打开（默认）/_blank新窗口打开/inner在name＝“inner”的iframe中打开">这个是超链接，点击这些文字跳转到href中的链接1.指向另一个文档的链接2.文档内部的锚点，可以实现跳回到顶部3.链接到email地址4.打电话</a>
+						
+					<p class="duanluo" 这里表示段落，里面的文字为一段>
+						<strong>这里写段落中的强调内容，重要性（45元）</strong>
+						<em>语意上的强调，比strong弱</em>
+						<span 行内容器，并无语意，通过class表现内容，辅助>对比强调的内容（参考价：90元）</span>
+					</p>
+
+					</div>
+					<iframe frameborder="0" name="inner"></iframe>
+					
+					<h2 id="jump">
+						<div>
+							名字叫jump的锚店对应段落<br 这个是换行符>一般id可以写在h或者div中。在网址后面写上#jump，也可跳转至此。
+						</div>
+					</h2>
+					<h3>其它标签</h3>
+					<span>
+						<cite>表示引用出处，一个人物，一个作品名</cite>
+						<q>表示引用内容，如一段话</q>
+						<code>代码</code>
+						初始化：
+						<b>这里的文字变粗，表示重要</b>
+						<i>这里的文字是斜体，表示术语</i>
+					</span>
+				</section>
+			<footer></footer>
+		</article>
+		<footer>页面尾部，包含版权信息，相关文档链接，也用在独立章节的尾部</footer>
+</body>
+</html>
+
+<!-- 2.3列表，包括无序列表，有序列表，和自定义列表 -->
+<!-- 无序列表可用来表示用户列表，导航，推荐列表 -->
+<div>
+	<h3>无序列表，序号是圆点</h3>
+	<ul （unordered list）>
+		<li>列表1</li>
+		<li>列表2</li>
+		<li>列表3</li>
+		<li>列表4</li>
+	</ul>
+</div>
+<!-- 有序列表可用来表示排行榜等 -->
+<div>
+	<h3>有序列表，序号是123</h3>
+	<ol type="a",序号变为abc start="2"，从b开始>
+		<li>第一名</li>
+		<li>第二名</li>
+		<li>第三名</li>
+		<li>第四名</li>
+	</ol>
+</div>
+<!-- 自定义列表，可用来表示一问一答等 -->
+<div>
+	<h3>自定义列表</h3>
+	<dl>
+		<dt 列表项，一次只一个>作者</dt>
+		<dd 对dt的解释，可多个>Yuwen Heng</dd>
+		<dd>Alex</dd>
+		<dt>出版年</dt>
+		<dd>2015-12</dd>
+	</dl>
+</div>
+<!-- 列表间可以相互嵌套 -->
+<div>
+	<h3>假如说li3嵌套一个有序列表</h3>
+	<ul>
+		<li></li>
+		<li></li>
+		<li>第三项
+			<ol type="a" start="2">
+				<li>第三项中第一项</li>
+				<li></li>
+				<li></li>
+			</ol>
+		</li>
+		<li></li
+	</ul>
+</div>
+
+<!-- 2.4更多组合内容标签 -->
+<!-- pre -->
+<div>
+	<h3>
+		<pre>
+		<code>
+			int main{
+				这里的换行，空格都会被保留，若没有pre，空格只有一个，换行也是一个，除非用多个<br>
+			}
+		</code>
+		</pre>
+	</h3>
+</div>
+<!-- blockquote -->
+<div>
+	<h3>blockquote表示大段的引用，小段的一句话用q</h3>
+	<blockquote cite="http://www.baidu.com">
+		<p>引用的第一段</p>
+		<p>引用的第二段</p>
+	</blockquote>
+</div>
+
+<!-- 3.嵌入资源 -->
+<!-- 3.1 image，iframe 3.2插件 3.3视频 3.4嵌入标签-->
+<div>
+	<div class="image">
+		<img src="这里是图片地址.jpg" alt="这里是图片的描述，若图片没有加载出来，就会显示在图片位置">
+	</div>
+	<div class="wrap">
+		<iframe src="http://www.163.com">这里一般是用来放广告的，iframe页面与主页面隔离，这样就能做到使页面的一部分不会刷新</iframe>
+	</div>
+	<div class="插件">
+		<object data="http://......swf这个是播放器地址，和下面movie的写法效果相同，在ie8以下不兼容" type="application/x-shockwave-flash//这是插件类型">
+			<param name="movie" value="http://......swf//这是插件参数和地址">
+			<param name="flashvars" value="http://......pdf">
+		</object>
+
+		<div>实现插件的另一种方式
+		<embed type="application/x-shockwave-flash" src="http://......swf" width="640" height="480">
+		</div>
+
+		</div>
+</div>
+
+<!-- 实现视频的方法 -->
+<video autoplay这个属性让视频自动播放 loop循环播放 controls="controls"控制条 poster="...jpg"视频封面 src="....mp4"若只有一段视频，也可以放这里>
+	<source src=".mp4" type="video/mp4">
+	//一般提供多个不同格式的source，供浏览器选择
+	<track kind="subtitles" src="video.srt" srclang="English" label="English">字幕
+	您的浏览器不支持video
+</video>
+
+<!-- 实现音频的方法 -->
+<audio controls="controls">
+	<source src=".....wav" type="audio/wav">
+	<source src="......mp3" type="audio/mp3">
+	您的浏览器不支持audio标签
+</audio>
+
+<!-- 嵌入标签 -->
+<!-- 图像，图表 -->
+<canvas>像素的，提供了绘制函数，可用脚本绘制图像，质量高，实时展示的游戏图标</canvas>
+<svg>矢量的，有一系列图形，高保真</svg>
+<img src="......jpg" width="" height="" usemap="#map">把img与map相关联，点击img对应区域，跳转至href
+<map name="map" data-ganame="描述" data-gapoint="点击跳转提示">
+	<area shape="rect"形状 coords="669,75,1075,682"左上角，右下角 href=".com" target="_blank">
+</map>
+
+<!-- 4.表格 -->
+<!-- 用于展示数据，如播放列表中歌手名，专辑名，时长等信息 -->
+<table>
+	<caption>这里是表格标题</caption>
+	<colgroup><col class="col1"/><col class="col2"/><col class="col3"/></colgroup>
+	<thead>
+		<tr><th>表头第一个元素</th><th>表头第二个元素</th><th>表头第三个元素</th></tr>
+	</thead>
+	<tbody>
+		<tr><th rowspan="2">第一列一般都是固定元素，用表头表示跨越两行，下一行不写th</th><td>其他用普通单元格</td><td>其他</td></tr>
+		<tr><td>...</td><td>...</td></tr>
+		<tr><th>...</th><td>...</td><td>...</td></tr>
+	</tbody>
+	<tfoot>
+		<tr><td colspan="3">这里是尾部，跨越3列</td></tr>
+	</tfoot>
+</table>
+
+<!-- 5.与服务器进行交互，用表单标签 -->
+<form action="表单提交的后台地址接口" method="post"提交方式，一般为post>
+	<fieldset 若内容比较多，用来分区>
+		<legend>这是分区的标题</legend>
+		<label for="file">选择照片按钮</label>
+		<input type="file" id="file">
+
+	</fieldset>
+
+	<fieldset>
+		<legend>这是分区的标题</legend>
+		<div>选择尺寸：</div>
+		<input type="checkbox"多选框 name="size"数据名称，交给后台 value="5"值 id="cb_0" checked disabled 默认勾选，无法更改>
+		<label for="cb_0">5寸</label>
+		一个input一个label，一一对应，同类name相同
+		<input type="radio"单选框 name="material" value="fushi" id="rd_0">
+		<label for="rd_0">富士，单选第一个</label>
+
+		<input type="text"单行文本框，默认 id="dexcription" placeholder="里面是提示" value="这里是默认内容" readonly只读 hidden隐藏>
+		<input type="submit"提交按钮> == <button type="submit">提交</button>
+		<input type="reset"重置按钮>  == <button type="reset">重置</button>
+
+		<div>
+			<label for="delivery" 功能提示信息，通过for与标签对应>配送方式</label>
+			<select id="delivery"下拉选择>
+			<optgroup label="group1"给选项分组>
+				<option value="0">快递</option>
+				<option value="1">EMS</option>
+			</optgroup>
+				<option value="2" selected>平邮</option>
+			</select>
+		</div>
+
+		<div>
+			<label for="feedback">意见反馈,多行文本框</label>
+			<textarea name="feedback" rows="4"4行 id="feedback"></textarea>
+		</div>
+	</fieldset>
+</form>
+<!-- 5.补充：更多input -->
+<input type="email">
+<input type="url">
+<input type="number">
+<input type="tel">
+<input type="search">
+<input type="range">
+<input type="color">
+<input type="date picker(data,month,week,time,datetime,datetime-local)">
+
+<!-- 6.实体字符 -->
+<!-- 标签不会被显示，若想要显示，需要实体字符（像转义字符） -->
+<!-- 6.1& -->
+&＋实体名称（区分大小写）＋；
+&＋#＋实体编号＋；
+
+<!-- 多个空格 -->
+&nbsp;
+&#160;
+<!-- 引号“ -->
+&quot;
+&#34;
+<!-- 大于小于（尖括号） -->
+大于 &gt; &#62;
+小于 &lt; &#60;
+<!-- 版权©️ -->
+&copy; &#169;
+<!-- & -->
+&amp; &#38;
+
+
