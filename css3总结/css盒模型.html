@@ -1,0 +1,105 @@
+<!-- 盒子模型 -->
+盒子模型包括：内容，填充物，边框，外边距四个属性;
+			content,padding,border,margin;
+每个属性都有上下左右四个部分(top,right,bottom,left)
+浏览器中heml元素(文字，图片等)当成盒子
+css按盒子来摆放
+
+content=width*height;
+<!-- width -->
+width:<length>|<percentage>|auto|inherit
+后两个通常不显式设置
+width:200px;
+width:50%;父元素宽度的50%
+默认auto(div元素默认为父元素宽度,span元素无法调整宽度，都是内容宽)
+一般只给块级元素设置宽度
+行级元素不能设置宽，高
+
+相关属性:max-width,min-width;
+<!-- height -->
+height:<length>|<percentage>|auto|inherit
+后两个通常不显式设置
+默认元素高度都是内容高度
+设置percentage时，需要设置body{height:100%;},这样父元素body才是窗口的大小(默认为内容高度)，不然会小于内容高度，无效
+给span(行级元素)设置高也无效
+
+相关属性:max-width,min-width;
+<!-- padding(内边距) -->
+padding:[<length>|<percentage>]{1,4}|inherit
+padding:上、右、下‘左顺序(TRBL)
+值缩写：对面相等，省略后者，四面相等，只写一个
+三个：上、右左、下
+两个：上下、右左
+默认为0
+
+或者可以指定设置
+padding-left:20px;
+margin,border也一样
+<!-- margin(外边距) -->
+margin:[<length>|<percentage>|auto]{1,4}|inherit
+默认值为auto
+margin为距离其他元素的距离(可以不为父元素)
+百分比为相对与父元素
+	<!-- margin合并 -->
+	上下两个元素，都有margin，且重叠(毗邻)，取较大值
+	父元素，与边缘子元素也能合并
+	<!-- 使子元素居中 -->
+	margin:0 auto;
+	会自动平均分配左右边距，
+<!-- border -->
+border:[<border-width>||<border-style>||<border-color>]|inherit
+	border-width:[<length>|thin|medium|thick]{1,4}|inherit
+	默认medium
+	border-style:[solid|dashed|dotted|...]{1,4}|inherit
+	可以设置四个方向的
+	border-color:[<color>|transparent]{1,4}|inherit
+	也是四个方向
+	默认是内容字体颜色
+border-top等可以单独设置一个方向上的border；
+
+<!-- 圆角矩形 -->
+border-radius:[<length>|<percentage>]{1,4}[/<length>|<percentage>]{1,4}
+前四个是横轴半径，后四个是纵轴半径(椭圆)
+左上，右上，右下，左下
+50%：横轴半径是宽的50％，纵轴半径是高的50%
+若是正方形，则变成圆
+
+值缩写：
+若横向＝纵向半径
+后面4个省略，用/分隔
+只写一个：四个圆
+
+也可以用
+border-top-left-radius:15px/10px;
+分别设定
+<!-- 盒子内容超出大小 -->
+overflow:visible|hidden|scroll|auto
+visible:可见
+hidden:隐藏
+scroll:出现滚动条
+auto:少的时候无滚动条，多的时候出现滚动条
+默认visible
+也有overflow-x,overflow-y
+<!-- box-sizing -->
+设置宽高的设定对象(width,height)
+box-sizing:content-box|border-box|inherit
+默认是content-box,总共的宽高是height+padding(双向)+border
+border-box:width和height就是最后大小
+<!-- box阴影 -->
+box-shadow:none|<shadow>[,<shadow>]*
+shadow:inset?&&<length>{2,4}&&<color>?
+inset(内阴影)
+四个数值:水平偏移(正为右)，垂直偏移(正为下)，模糊半径(3px，外边缘向外1.5px,向内1.5px)，阴影大小
+color默认为字体颜色
+shadow:inset 0px 0px 5px red;会有一个2.5px的红色向内的框
+以，隔开，可以设置内外阴影共存
+阴影不占空间
+<!-- 轮廓outline -->
+无border时，为了区分不同的元素间的边界
+outline:[<outline-width>||<outline-style>||<outline-color>]|inherit
+outline-width:<length>|thin|medium|thick|inherit(后三个不常用)
+outline-style:solid|dashed|dotted...|inherit
+outline-color:<color>|invert|inherit
+比border少了{1,4},无法分别设置四个方向的轮廓
+在border外，不占空间(其他元素会与outline重合)
+invert:与当前背景色相反

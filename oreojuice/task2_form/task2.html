@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表单部分</title>
+	<link rel="stylesheet" type="text/css" href="reset.css">
+	<style type="text/css">
+		.fmc{margin-left: 300px; text-align: right; position: relative; height: 400px;}
+		.fmc .data{position: absolute; left: 0px;}
+		.fmc .sub{color: #A0A19D; font-size: 13px; margin-top: 10px;}
+		.fmc .sub1{margin-right: 25px;}
+		.fmc .sub2{margin-right: 37px;}
+		.fmc .input{width: 176px;}
+		.fmc .post{width: 100%; position: absolute; left: -300px; top: 370px; height: 30px; background-color: #273CC5; border: none; border-radius: 4px; color: #FFF;}
+		.fmc .gen{margin-right: 102px;}
+		.fmc .city{margin-right: 118px;}	
+		.fmc .hob{margin-right: 18px;}
+		.fmc .text{margin-right: 20px;}
+		.m-fm div{margin-top: 15px;}
+		.title{margin: 20px 0 20px 50px; font-weight: bold; font-size: 20px;}
+	</style>
+</head>
+<body>
+	<form class="m-fm" action="/post" method="post">
+		<legend class="title">这里以后是一个侧栏，这是侧栏的标题</legend>
+		<div class="fmc">
+		<fieldset style="border: none;" class="data">
+			<div>
+				<label for="e-mail">请输入邮箱地址</label>
+				<input type="text" name="e-mail" class="input">
+				<p class="sub sub1">邮箱地址请按要求格式输入</p>
+			</div>
+			<div>	
+				<label for="password">请输入密码</label>
+				<input type="password" name="password" class="input">
+				<p class="sub sub2">密码请为6-16位英文数字</p>
+			</div>
+			<div>
+				<label for="password2">请重复输入密码</label>
+				<input type="password" name="password2" class="input">
+			</div>
+			<div class="gen">
+				<label for="gender">性别</label>
+				<input type="radio" name="gender" id="male" value="male">
+				<label for="male">男</label>
+				<input type="radio" name="gender" id="female" value="female">
+				<label for="female">女</label>
+			</div>
+			<div class="city">
+				<label for="city">城市</label>
+				<select name="city">
+					<option value="0" selected>北京</option>
+					<option value="1">天津</option>
+				</select>
+			</div>
+			<div class="hob">
+				<label for="hobby">爱好</label>
+				<input type="checkbox" name="hobby" id="sports" value="sports">
+				<label for="sports">运动</label>
+				<input type="checkbox" name="hobby" id="art" value="art">
+				<label for="art">艺术</label>
+				<input type="checkbox" name="hobby" id="science" value="science">
+				<label for="science">科学</label>
+			</div>
+			<div class="text">
+				<label for="text" style="vertical-align: top;">个人描述</label>
+				<textarea name="text" placeholder="这里是个人描述" rows="4"></textarea>
+			</div>
+		</fieldset>
+		<button class="post">确认提交</button>
+		</div>
+	</form>
+</body>
+</html>

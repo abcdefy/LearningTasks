@@ -1,0 +1,103 @@
+小图标一般也是由背景来做
+<!-- background-color -->
+background-color:<color>|transparent;
+默认是transparent
+一定在最下层
+<!-- background-image -->
+background-image:<background-image>[,<background-image>]*
+可以有多个
+background-image:<image>|none
+可以通过
+url("http://website/images/x.png")
+url("/images/x.png")
+url(".../images/x.png")
+相对于超链接(绝对地址)，根路径，css相对路径来引入图片
+引号可以用单引号，也可以不写
+先引入的图片在上层，后引入的在下层
+<!-- 平铺 -->
+background-repeat:<repeat-style>[,<repeat-style>]*
+repeat-style:repeat-x|repeat-y|[repeat|space|round|no-repeat]{1,2}
+
+repeat:x，y双向平铺
+space:平铺时有间距(正好平铺，充满)
+round:伸缩平铺(也是正好铺满，图片会有伸缩，都有可能)
+多个对应多张图片，若只有一个，后面和前面一样
+repeat-style可以有多个值，第一个表示x轴，第二个表示y轴
+<!-- 让背景跟着动 -->
+background-attachment:<attachment>[,<attachment>]*
+attachment:scroll|fixed|local
+也是和图片一一对应
+scroll:背景不动，内容动
+local:内容与背景一同动
+fixed:与窗口一同动，不常用
+<!-- 改图片位置 -->
+background-position:<position>[,<position>]*
+position:[left|center|right|top|bottom|<percentage>|<length>]|[left|center|right|<percentage>|<length>] [left|center|right|<percentage>|<length>]|[center|[left|right][<percentage>|<length>]?]&&[center|[left|right][<percentage>|<length>]?]
+可以有多个值，用，隔开，对应图片
+默认是0 0;
+
+若只有一个值，表示x轴，另一个值为center;
+background-position:right;(右中)
+
+两个值:
+可以用length
+background-position:20px 30px;(x轴右移20，y下移30)
+可以用percentage
+background-position:20% 50%;对应容器的位置(图片的20%x,50%y与容器的20%x,50%y的点重合，都是50％居中)
+
+可以写四个值
+background-position:right 10px top 20px;最右边距离右侧10px，最上边距离top 20px
+<!-- 渐变背景 -->
+background-image:linear-gradient():[[<angle>|to<side-or-corner>],]?<color-stop>[,<color-stop>]+
+side-or-corner:[left|right]||[top|bottom]
+color-stop:<color>[<percentage>|<length>]?
+
+设置两个颜色断点，由红到蓝垂直渐变(默认是to bottom)
+background-image:linear-gradient(red,blue);
+background-image:linear-gradient(to top,red,blue);从下往上
+to right bottom:从左上到右下
+或者写角度:45deg
+顺时针旋转，坐标轴向上
+color-stop:
+可以只写颜色，如blue,red,yellow;
+这样默认为:blue 0%,red 50%,yellow 100%;
+50%:在方向50%的位置，为准确的red，向两边渐变
+<!-- 径向渐变 -->
+沿着圆或者椭圆向外渐变
+background-image:radial-gradient():[[circle||<length>][at<position>]?,|[ellipse||[<length>|<percentage>]{2}][at<position>]?,|[[circle|ellipse]||<extent-keyword>][at<position>]?,|at<position>,]? <color-stop>[,<color-stop>]+
+语法解析:circle 半径 at 圆心位置 或 ellipse 两个半径，横向、纵向 at 圆心位置 或 写circle，ellipse(可无) 关键字 at 圆心位置 + 颜色1，颜色2 
+半径，圆心位置都不是必填的
+extent-keyword:closest-side|farthest-side|closest-corner|farthest-corner
+closest-side:以到最近边的距离为半径，若前面无circle|ellipse,选最近的横向，纵向位置为半径，ellipse。
+circle:若没有半径，关键字，默认为farthest-corner
+
+若只写了两个颜色，默认是椭圆，farest-corner,两个半径比列为圆心到cloest-side的比列
+<!-- repeat渐变 -->
+background-image:repeat-linear-gradient();
+background-image:repeat-radial-gradient()
+会重复渐变
+<!-- 选一个图片，如果设置position为右下角，默认是在padding box右下角 -->
+background-origin:<box>[,<box>]*
+box:border-box|padding-box|content-box
+决定背景图0 0这个坐标和100%这个坐标位置
+默认是padding-box,图片的0 0与padding-box 0 0重合
+<!-- 切割 -->
+若只想让背景出现在某一区域
+background-clip:<box>[,<box>]*
+默认为border-box，以border-box外边缘来切割
+<!-- 改变图片大小 -->
+background-size:<bg-size>[,<bg-size>]*
+bg-size:[<length>|<percentage>|auto]{1,2}|cover|contain
+%:相对于容器
+第一个值表示宽，第二个高，若只有一个，高为auto
+cover:覆盖整个容器，尽可能小
+contain：尽可能大，不能超出容器
+<!-- 整合属性 -->
+background:[<bg-layer>,]*<final-bg-layer>
+bg-layer:<bg-image>||<position>[/<bg-size>]?||<repeat-style>||<attachment>||<box>||<box>
+position和size要用/隔开
+final-bg-layer:<bg-layer>||<"background-color">
+color必须写在最后一个背景图中
+第一个box是origin，第二个box是clip。若只出现一个，应用给两者
+background:0px 0px/contain repeat local padding-box border-box red;
+

@@ -1,0 +1,65 @@
+<!-- transform -->
+transform:none|<transform-function>+
+rotate(<angle>)旋转
+translate(<translation-value>[,<translation-value>]?)移动
+scale(<number>[,<number>]?)缩放
+skew(<angle>[,<angle>]?)倾斜
+
+transform:rotate(45deg);顺时针旋转
+默认旋转z轴，可以写成rotateX或者rotateY,实现绕x轴或y轴旋转。(配合perspective使用，现实透视效果)
+perspective:none|<length>
+length为人眼到物体的距离，透视效果越近越明显
+perspective-origin:
+[left|center|right|top|bottom|<percentage>|<length>]
+|
+[left|center|right|<percentage>|<length>] [top|center|bottom|<percentage>|<length>]
+|
+[center|[left|right]]&&[center|[top|bottom]]
+改变透视角度，默认是center，正对着物体看
+1.一个值，另一个值为50%，center是正中间
+2.两个值，第一个表示x轴位置，第二个表示y轴
+3.x，y轴关键字
+百分比是物体的宽高，若从一个角看，那个角几乎没有透视效果
+若只写关键字，顺序可变，若有数字，顺序不可变。
+
+
+transform:translate(40px,20px);第一个值是x轴，第二个值是y轴，若只有一个值，只移x轴
+可拆分为:translateX()和translateY()
+可为20%等，参照物为盒子的大小(长或者宽，可为负)
+transform:scale(1,2);x轴方向缩放1，y缩放2,第二个值不写时默认与第一个相同，图片中心不变
+可拆分成为scaleX();和scaleY();
+transform:skew(30deg,50deg);把矩形变成平行四边形等，第一个是y轴向x轴偏移多少度(在图片中心画十字，y轴负半轴向x轴正半轴偏移的角度，两条边与它平行)，第二个值可有可无，是x轴向y轴方向倾斜角度，只写一个，只偏移y轴
+可分为skewX();和skewY();
+
+同时应用多种变换：
+transform:translate() skew() rotate();变换顺序不一样，因为旋转，倾斜都会改变坐标轴，移动将按照新的坐标轴方向移动(若先使用缩放，移动的距离将按照缩放值变换，如40px*1.5)
+
+改变旋转中心点：
+transform-origin:[left|center|right|top|bottom|<percentage>|<length>] | [left|center|right|<percentage>|<length>] [top|center|bottom|<percentage>|<length>]<length>? | [center|[left|right]]&&[center|[top|bottom]]<length>?
+1.可以写关键字
+2.可以写x，y，z三个轴的位置
+3.可以用关键字表示x，y，用length表示z
+
+默认为transform-origin:50% 50%;在中心点
+0 0为左上角
+right:表示最右边
+只写一个值时，另外一个为50%
+<!-- 旋转的3D效果 -->
+3D移动:
+translate3d(<translation-value>,<translation-value>,<length>)
+其实是translateX(),translateY()再加上translateZ()
+移动z轴，正向会稍微变大
+3D放大:放大的是坐标轴，而不是宽高
+scale3d(<number>,<number>,<number>)
+多了一个scaleZ()，若先scaleZ(5),再translateZ(100px)，相当于移动500px
+3D旋转：
+rotate3d(<number>,<number>,<number>,<angle>)
+X,Y,Z三个轴坐标＋旋转角度，点与坐标原点的连线，以此为轴，旋转
+transform:rotate3d(1,1,1,45deg);
+<!-- style -->
+transform-style:flat|preserve-3d
+默认为flat，一个元素进行transform之后，内部不再保留3d空间
+preserve-3d:内部保留3d空间
+<!-- 旋转后，使元素背面不可见 -->
+backface-visibility:vidible|hidden
+默认可见

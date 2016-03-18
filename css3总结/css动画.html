@@ -1,0 +1,95 @@
+<!-- hover -->
+.property:hover {这里写最终要达成的效果}
+<!-- transition-property -->
+transition-property:none|<single-transition-property>[';<single-transition-property>]*
+single-transition-property:all|<IDENT>
+IDENT:某一个属性值，如color，left
+只有指定的属性会发生动画渐变效果
+<!-- transition-duration -->
+transition-duration:<time>[,<time>]*
+过度所用时间
+transition-duration:2s;可以写多个，照应多个属性
+<!-- transition-timing-function -->
+transition-timing-function:<single-transition-timing-function>[';<single-transition-timing-function>]*
+想让动画效果按一定的速率变化时使用
+single-transition-timing-function:ease|linear|ease-in|ease-out|ease-in-out|cubic-bezier(<number>,<number>,<number>,<number>)|
+step-start|step-end|steps(<integer>[,[start|end]]?)
+
+ease:默认值，慢进慢出，中间快
+linear:匀速
+ease-in:开始慢
+ease-out:结束慢
+ease-in-out:比ease幅度更大一点
+cubic-bezier:贝塞尔曲线
+steps(3,start):表示动画分3步，每一步开始的时候做动画
+<!-- transition-delay -->
+transition-delay:<time>[,<time>]*
+延迟进行动画
+<!-- transition -->
+值缩写
+transition:<single-transition>[',<single-transition>]*
+single-transition:[none|<single-transition-property>]||<time>||<single-transition-timing-function>||<time>
+第一个time是duration，第二个time是delay
+
+可以写多个，指定不同的属性，用，隔开。每一个之中，用空格隔开属性
+如果不写，默认内容分别是:all 0s ease 0s;
+
+<!-- 多关键帧，动画自动播放 -->
+-webkit-animation-...
+<!-- animation-name -->
+animation-name:<single-animation-name>[,<single-animation-name>]*
+single-animation-name:none|<IDENT>
+给animation命名，来自关键帧的定义
+IDENT:可以不是属性名，如animation-name:abc,abcd;这是两个关键帧定义，如，一个控制颜色，一个控制位置
+<!-- animation-duration -->
+animation-duration<time>|[,<time>]*
+动画持续时间，与关键帧一一照应
+<!-- animation-timing-function -->
+与<!-- transition-timing-function -->完全一样，定义时间函数(每两帧之间)
+
+<!-- animation-iteration-count -->
+动画执行次数
+animation-iteration-count:<single-animation-iteration-count>[,<single-animation-iteration-count>]*
+single-animation-iteration-count:infiniti|<number>
+多个对应多个关键帧定义name
+<!-- animation-direction -->
+animation-direction:<single-animation-direction>[,<single-animation-direction>]*
+single-animation-direction:normal|reverse|alternate|alternate-reverse
+normal:按关键帧定义顺序去做动画
+reverse:按关键帧定义相反做动画
+alternate:往返动画
+alternate-reverse:反方向往返动画
+<!-- animation-play-state -->
+播放状态
+animation-play-state:<single-animation-play-state>[,<single-animation-play-state>]*
+single-animation-play-state:running|paused
+播放中和暂停，默认播放，多个设置对应多个animation
+可以用来控制hover之后的效果(比如默认running，hover时paused)
+<!-- animation-delay -->
+延迟执行
+animation-delay:<time>[,<time>]*
+<!-- animation-fill-mode -->
+表示动画开始时是否要保持第一帧的动画，结束时是否保持最后一帧。
+animation-fill-mode:<single-animation-fill-mode>[,<single-animation-fill-mode>]*
+single-animation-fill-mode:none|backwards|forwards|both
+none:开始和结束时都在默认位置
+backwards:开始时保持第一帧，结束时到默认位置
+forwards:开始时在默认位置，结束时保持最后一帧
+<!-- animation:值缩写 -->
+animation:<single-animation>[,<single-animation>]*
+single-animation:<single-animation-name>||<time>||<single-transition-timing-function>||<time>||<single-animation-iteration-count>||<single-animation-direction>||<single-animation-fill-mode>||<single-animation-play-state>
+第一个time是duration，第二个是delay
+可为none:不做动画
+只有name+2s就可以做动画了
+
+<!-- 关键帧定义 -->
+<!-- @keyframes -->
+@-webkit-keyframes abc{
+	from{}开始，也可写作0%{}
+	to{}结束，也可写作100%{}
+}
+如果有多个关键帧样式相同：
+@-webkit-keyframes abc{
+	0%,50%,70%{}
+	25%,100%{}
+}

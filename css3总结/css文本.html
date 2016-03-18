@@ -1,0 +1,90 @@
+<!-- 改变文字大小 -->
+font-size属性
+属性值有以下类型：
+font-size:<length> | <percentage> | <absolute-size> | <relative-size>(后两个不太常用)
+font-size: 12px,2em｜15%｜small,medium,large,x-small,xx-small｜smaller,larger
+	2em:子元素大小是父元素的两倍，以文字大小为参考 ＝ 200%
+	参照物都是父元素的size
+<!-- 改变字体 -->
+font-family属性
+font-family:[<family-name>|<generic-family>]#
+<generic-family>(通用名称) = serif 衬线体|sans-serif 非衬线体|cursive 草书|fantasy 幻想体|monospace 等宽字体 这只是大类，具体的字体由系统默认(后三种不常用)
+<family-name>:各种字体的具体名称(如arial)若字体中不包括中文，中文就为默认字体
+font-family:arial,Verdana,sans-serif;多个值的时候，用,隔开，若第一个没有，用第二个。
+font-family:"宋体"；
+<!-- 加粗 -->
+font-weight:normal|bold|bolder|lighter|100~900(比较级不常用,400为normal,700为bold)
+<!-- 斜体 -->
+font-style:normal|italic(斜体)|oblique(倾斜，当字体本身不带斜体时使用，若本身带有斜体，和italic相同)
+<!-- 行高 -->
+line-height:normal|<number>|<length>|<percentage>
+normal由浏览器决定，一般为1.1到1.2之间(1.14左右)
+line-height:3(也是3em，但是是直接继承，行高为行字体大小的3倍),40px,3em(em为当前字体大小);300%=3em，行高为父font-size的3倍(先计算，后继承)
+<!-- 缩写font -->
+这5个属性不用一个一个写
+用font
+font:[[<font-style>||<font-weight>]?<font-size>[/<line-height>]?<font-family>];
+line-height前面要有/
+font:italic bold 30px/3 "宋体"，serif；
+<!-- 颜色 -->
+color:red;
+color:#ff0000; #加16进制写法(6位，每两位是一组，最大为ff,255)
+color:rgb(255,0,0);
+color:rgba(255,0,0,1);(a为透明度，alpha通道，包括文字背景也会变透明)
+color:transparent(透明,相当于a=0);
+<!-- 对齐方式 -->
+text-align:left|right|center|justify(两边对齐)
+<!-- 在文字中插入图标 -->
+调整图标的垂直位置：
+vertical-align:baseline|sub(下标)|super(上标)|top|text-top|middle|buttom|text-bottom|<percentage>(参照line-height)|<length>(baseline往上20px)
+<!-- 首行缩进 -->
+text-indent:<length>|<percentage>
+text-indent:2em;缩进两个字符大小
+text-indent:20%;参照物为文字容器的大小；
+<!-- 保持原格式展现code -->
+white-space控制空格，tab保留与合并，是否自动换行
+white-space:normal|nowrap|pre|pre-wrap|pre-line
+
+normal由浏览器决定，一般情况换行会被合并为空格
+nowrap:无自动换行(一行写不下时，挤在一起)
+pre:保留换行，保留空格，不自动换行
+pre-wrap:可以自动换行(用得多)
+pre-line:保留换行，空格合并，自动换行
+<!-- 长单词自动换行 -->
+word-wrap:normal|break-word
+长单词在一行中塞不进去的时候，会换行，若在新的一行中也塞不下，会断开
+
+word-break:normal|keep-all|break-all
+normal与keep-all效果差不多
+break-all表示一个单词所有的字母都能断开
+<!-- 阴影 -->
+text-shadow:none|[<length>{2,3}&&<color>?]#
+text-shadow:1px 2px 3px #f00;
+第一个是x轴偏移方向，第二个是y轴偏移方向，第三个是阴影模糊半径
+颜色不写，阴影就是文字的颜色
+<!-- 文字标注 -->
+text-decoration:none|[underline||overline||line-through]
+下划线，上划线，中线
+<!-- 文字放不下时，出现... -->
+text-overflow:clip|ellipsis
+clip:截断
+ellipsis:省略号
+一般配合overflow:hidden; 和 white-space:nowrap;使用
+<!-- 按钮文本鼠标转换 -->
+若不转换，鼠标放在按钮上时会变成文本形式
+cursor:[<url>,]*[auto|default|none|help|pointer|zoom-in|zoom-out|move]还有更多不常用的
+
+url:图片代替鼠标形状，用逗号与后面隔开
+auto:自动处理
+default:普通光标
+none:无光标
+pointer:手
+zoom-in:放大镜
+zoom-out:缩小镜
+move:带有箭头的移动光标
+
+cursor:url(),pointer;前面失效，后面替补
+<!-- 强制继承 -->
+color:inherit
+会强制继承父元素的颜色
+前面讲的所有都有inherit关键字

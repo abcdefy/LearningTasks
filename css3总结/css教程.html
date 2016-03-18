@@ -1,0 +1,325 @@
+1.css的引入 -->
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="base.css">这是外部样式表，href就是样式表地址，通用，维护起来方便
+</head>
+<body>
+	
+</body>
+</html>
+<!-- 内部引用 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body{background-color: red;}
+		p{margin-left: 20px;}
+	</style>页面独有，样式比较少，多的话也用外部样式表
+</head>
+<body>
+	
+</body>
+</html>
+<!-- 内嵌样式 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<p style="color:red; margin-left:20px;">与html混在一起，不利于维护，动态效果时用js改变属性，引入css属性
+		This is a paragraph
+	</p>
+</body>
+</html>
+
+2.语法
+前面selector是选择器，大括号里面是属性声明（属性名：属性值）
+selector{
+	position:value;
+	height:value;
+	overflow:value;(可有可无)
+}
+
+浏览器会有私有属性前缀
+chrome,safari
+-webkit-
+firefox
+-moz-
+IE
+-ms-
+opera
+-o-
+包含－，私有属性要写在属性声明的前面，标准属性写后面
+
+<!-- 属性值 -->
+	<!-- 基本元素 -->
+		<!-- 关键字 -->
+		auto,solid,bold
+		inherit,initial(每个属性都可以取)
+		<!-- 类型 -->
+		-基本类型：length(15px)，percentage(5%)，color(red,#FFFF)
+		-其他类型：'padding-width'(15px或5%) 与属性同名，加'' color-stops(red 15px,red 5%)
+		<!-- 符号 -->
+		/,分隔使用
+	<!-- 组合符号 -->
+		<!-- 空格 -->
+		<'font-size'> <'font-family'>空格隔开的两个基本元素，必须都出现，顺序不能变如
+		- 12px arial
+		<!-- && -->
+		<length>&&<color>两个基元素必须出现，顺序可变
+		- green 2px
+		- 1em blue
+		<!-- || -->
+		两分隔符分隔的基本类型，最少出现一个，顺序可变
+		underline||overline||blink
+		<!-- | -->
+		单分隔符，两个基本元素只能出现一个
+		<color>|transparent
+		- orange
+		-transparent
+		<!-- [] -->
+		大括号里面的元素是一个整体，先计算
+		bold[thin||<length>]
+		- bold thin
+		- bold 2em
+	<!-- 数量符号 -->
+		<!-- 无 -->
+		<length> 后无数字，只能出现一次
+		- 1px
+		<!-- + -->
+		表示可以出现多个
+		<color-stop>[,<color-stop>]+ 这里第二个是加号包括的范围，必须出现至少1个
+		- blue, green 50%, gray
+		<!-- ? -->
+		？表示基本元素可以出现，也可以不出现
+		inset?&&<color>
+		- inset blue
+		- blue
+		<!-- {} -->
+		<length>{2,4} 二表示最少出现次数，4表示最多出现次数
+		- 1px 2px 3px
+		<!-- * -->
+		<time>[,<time>]*
+		表示可以出现0或者多次
+		- 1s
+		- 1s,8s
+		<!-- # <--></-->
+		<time># == [,<time>]* 用逗号隔开
+<!-- @规则语法 -->
+@import "subs.css" @标识符 xxxx;
+@media print{		@标识符 xxx｛｝
+	body{font-size:10pt}
+}
+	<!-- 常用规则 -->
+	@media 媒体查询条件，做响应式布局，设备必须满足要求，样式才会生效
+	@keyframes CSS动画中间步骤
+	@font-face 引入外部字体
+
+<!-- 3.选择器 -->
+	<!-- 选择器是一个表达式，用来选中一系列的元素，样式应用于这些元素 -->
+	<!-- 下列样式中h1，.m-nav都是选择器 -->
+	<!-- 选择器分组用，隔开 -->
+	h1{color:red;}
+	.m-nav{height:70px;font-size:14px;}
+	h1,h2,h3{}
+	<!-- 简单选择器 -->
+		<!-- 标签选择器tag{} -->
+		将标签p里面的文字改为蓝色，用
+		p{color:blue;}
+		<!-- 类选择器.className{}，用于将一组标签中的某一个标签应用不同的样式 -->
+		<div>
+			<p class="special stress">这一段与众不同，一个标签可以有多个class，放在一起，空格隔开</p>
+			<p class="stress"></p>
+		</div>
+
+		用法：.开头，＋className，className必须以字母开头，包括字母，数字和_ －，区分大小写，可以重复利用
+			 .special{color:red;}
+			 .stress{font-weight:bold;}//加粗
+			 若想修改含有stress的class的样式，用
+			 [class~=stress]{color:blue;}
+		<!-- id选择器#id{} -->
+		<div id="banner">
+			id选择器的用途和类选择器类似，不过是用id进行区分
+		</div>
+
+		用法：#banner{color:blue;}
+			以＃开头，只能出现一次，不能重复利用，其他相同
+		<!-- 通配符选择器*{} -->
+		<div>
+			<h2>标题</h2>
+			<p>段落一</p>
+		</div>
+		<div>页脚</div>
+		用法：页面上所有的元素都一个样
+			 *{color:blue;}
+		<!-- 属性选择器[att]{} -->
+		修改密码时，账号不能变，需要修改特殊的样式
+		<form action="" method="post">
+			<div>
+				<input disabled type="text">
+			</div>
+			<div>
+				<input type="password">
+			</div>
+		</form>
+		用法：[disabled]{background-color:#eee;}
+			 或者：[type=text]{color:blue;}
+			 把属性放在方括号里，含有这个属性的元素就会被选中
+			 其实id选择器是属性选择器的特例。
+			 #banner{color:blue;}==[id=banner]{color:blue;}
+			 类选择器也是
+			 .sports{}==[class=sport]{}
+
+			 想要选中属性值中带有en,en-us之类的元素，用：
+			 [lang|=en]{}
+			 |=:选中包括en，和en-的元素
+
+			 选中跳转至href：
+			 ^表示以什么开头
+			 [href^="#"]{} 页面内锚点
+			 $表示以什么结尾
+			 [href$=pdf]{} pdf文档
+			 *表示包含
+			 [href*="163.com"]{}
+			 
+			 如果属性值是符号，或有空格，需要引起来
+
+		<!-- 伪元素选择器a:link -->
+		改变所有带链接的a标签(href不为空)
+		a:link{color:gray;}
+		访问过链接之后，改变颜色
+		a:visited{color:red;}
+		在鼠标移动到一个链接上时，改变颜色
+		a:hover{color:green;}
+		当鼠标点击上去（未松手）
+		a:active{color:orange;}
+		前两个只能用于a类，后两个可用于其他元素
+		顺序不能变
+		<!-- 别的伪类： -->
+		input:enabled{}
+		input:disabled{}
+		input:checked{}  （指的是checkbox钩上之后的样式）
+
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+
+		li:first-child{}
+		li:last-child{}
+		li:nth-child(even){} 这里其实是n的表达式，如3n+1,n从0开始，li从1开始
+		li:nth-last-child(3n+1){} 从后往前排序
+		也可用于tr等标签
+		ul:only-child{} 选中只有一个li的ul
+		<!-- dt,dd都是dl的child，也是自己的type -->
+		<dl>
+			<dt></dt>
+			<dd></dd>
+			<dd></dd>
+		</dl>
+		改变仅有的一个type：
+		dt:only-type{}
+		改变第一个dd，用：
+		dd:first-of-type{}
+		改最后一个：
+		dd:last-of-type{}
+		改变第n个：
+		dd:nth-of-type(表达式){}
+		dd:nth-last-of-type(){}
+
+		<!-- 不常用伪类： -->
+		:empty (无子元素)
+		:root (选中的就是<html></html>的根标签)
+		:not() (选中不包含某一选择器的选择器)
+		:target 目标元素
+		:lang(en) 选中特殊语言的元素
+
+    <!-- 组合选择器 -->
+    img[src$=jpg]{}
+	以img为标签，src值以jpg结尾的标签
+	#banner:hover{}
+	id为banner，hover状态
+		<!-- 后代选择器 -->
+		 <div class="main">
+		 	<h2>改变这里的内容</h2>
+		 	<div>
+		 		<h2>这里的也变</h2>
+		 	</div>
+		 </div>
+		 .main h2{}
+		<!-- 子选择器 -->
+		.main>h2{}
+		只改变1号h2的样式
+		<!-- 兄弟选择器 -->
+		<div>
+			<h2></h2>
+			<p>段落1</p>
+			<p>段落2</p>
+		</div>
+		只改变段落1: h2+p{}  p的直接前面要有h2
+		选中两个段落：h2~p{}  p的前面有h2就可以
+	<!-- 伪元素选择器 -->
+	若要使用首字下沉这类格式
+	::first-letter{color:red;} 前面是两个冒号
+	::first-line{color:red;}
+	::befor{content:"这里是插在前面的内容";}
+	::after{content:"这里是插在后面的内容";}
+	::selection{
+		color:red;
+		background-color:#ccc;
+	}更改被选中元素的样式
+	<!-- 继承 -->
+	在某个元素上的样式，子元素会继承此样式
+	写body{font-family:"Microsoft Yahei"}
+	body中所有元素都会继承此字体
+
+		<!-- 自动继承属性 -->
+		- color
+		- font
+		- text-align
+		- list-style
+		<!-- 非继承属性 -->
+		- background
+		- border
+		- position(位置相关)
+	<!-- css优先级 -->
+	- a = 行内样式(style=)
+	- b = ID选择器的数量
+	- c = 类，伪类和属性选择器的数量
+	- d = 标签选择器和伪元素选择器的数量
+	从上往下权重降低
+	1000*a+100*b+10*c+1*d
+	优先级高的会覆盖掉优先级低的
+	若优先级相同，参考css层叠
+	<!-- css层叠 -->
+	相同的属性会覆盖
+	优先级高的覆盖优先级低的
+	后面的覆盖前面的(优先级相同时)
+	不同的属性会合并
+	所以看层叠时需要一个属性一个属性的看(同一个标签里) 
+	<!-- 改变优先级 -->
+		<!-- 1.改变顺序(相同时) -->
+		<!-- 2.提升优先级 -->
+		<p class="special" class="tip">改变这段文字的颜色</p>
+		加选择器
+		.special{
+			color:red;
+		}此时优先级相同，且指向同一个标签中的属性。加上p，提升优先级(p.special)
+		.tip{
+			color:blue;
+		}
+		<!-- 3.!important -->
+		前面两种方法不可行时，在;前面添加!important关键字(最后再用)
+		.tip{
+			color:blue !important;
+		}
