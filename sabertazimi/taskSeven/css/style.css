@@ -24,17 +24,20 @@ body {
 
 .trans-btn {
     display: inline-block;
+
     margin-top: 30px;
     padding: 7px 27px;
+
     color: #e74f4d;
     border: 1px solid #e74f4d;
 }
 
 .trans-btn:hover {
+    text-decoration: none;
+
     color: #fff;
     border: none;
     background-color: #e74f4d;
-    text-decoration: none;
 }
 
 /* end of utils */
@@ -434,22 +437,168 @@ body {
 }
 
 .first-details-content span {
-    font-size: 1.2em;
     color: #e74f4d;
+
+    font-size: 1.2em;
 }
 
 .first-details-content > p {
-    padding: 0 55px;
     margin-top: 10px;
+    padding: 0 55px;
+
+    color: #aaa;
+
     line-height: 30px;
 }
 
-.first-details-content > img {
-     cursor: pointer;
+.more-points {
+    margin-top: 25px;
+
+    letter-spacing: 10px;
 }
 
-.focus-point {
-    background-color: #393a3a;
+.second-details {
+    position: relative;
+
+    width: 100%;
+    height: 500px;
 }
 
-#e9615f
+.more-link {
+    position: absolute;
+
+    width: 450px;
+    height: 300px;
+    padding-top: 200px;
+
+    text-align: center;
+}
+
+.more-link > h4,
+.more-link > p {
+    font-size: 1.6em;
+}
+
+.more-link a {
+    margin-top: 0;
+    padding: 8px 30px;
+
+    font-size: 1.6em;
+}
+
+.first-link {
+    top: 0;
+    left: 0;
+
+    color: #fff;
+    background-color: #e74f4d;
+}
+
+.first-link > a {
+    color: #fff;
+    border-color: #fff;
+}
+
+.first-link > a:hover {
+    text-decoration: none;
+
+    color: #e74f4d;
+    border: none;
+    background-color: #fff;
+}
+
+.second-link {
+    top: 0;
+    left: 450px;
+}
+
+.second-link .line {
+    background-color: #e74f4d;
+}
+
+.second-details-bg {
+    position: absolute;
+    top:0;
+    left:900px;
+
+    width: 455px;
+    height: 500px;
+
+    background: url(../img/bg_woman.jpg) center center no-repeat;
+    background-size: cover;
+}
+
+.form {
+    width: 100%;
+    height: 700px;
+    padding-top: 100px;
+
+    text-align: center;
+}
+
+.form-title {
+    margin-bottom: 100px;
+}
+
+.form-title .line-wrapper {
+    padding-bottom: 10px;
+}
+
+.form-title .line {
+    background-color: #e74f4d;
+}
+
+.form-title > h2 {
+    font-size: 1.6em;
+}
+
+.form-title > p {
+    color: #aaa;
+
+    font-size: 1.2em;
+}
+
+.form-aside {
+    float: left;
+
+    width: 300px;
+    padding-left: 100px;
+
+    text-align: left;
+
+    color: #aaa;
+}
+
+.form-aside > li {
+    margin-bottom: 25px;
+}
+
+.form-aside > li > h3 {
+    margin-bottom: 25px;
+
+    font-size: 1.2em;
+}
+
+.form-aside > li > p {
+    width: 100%;
+    line-height: 15px;
+}
+
+.form-aside > li > a {
+    position: relative;
+    left: 250px;
+    color: #aaa;
+    display: block;
+    padding-left: 20px;
+    background: url(../img/unfold.png) 0% 95% no-repeat;
+}
+
+.form-content {
+    width:800px;
+}
+
+.form-raw {
+    text-align: left;
+    width: 380px;
+    display: inline;
+}
