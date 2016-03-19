@@ -581,24 +581,171 @@ body {
 
 .form-aside > li > p {
     width: 100%;
+
     line-height: 15px;
 }
 
 .form-aside > li > a {
     position: relative;
     left: 250px;
-    color: #aaa;
+
     display: block;
+
     padding-left: 20px;
+
+    color: #aaa;
     background: url(../img/unfold.png) 0% 95% no-repeat;
 }
 
 .form-content {
+    position: relative;
+    left: 500px;
+
     width:800px;
+    height: 300px;
+}
+
+.form-content > div {
+    height: 20%;
 }
 
 .form-raw {
+    position: absolute;
+
+    width: 45%;
+
     text-align: left;
-    width: 380px;
-    display: inline;
+
+    background-color: #ededef;
+}
+
+.form-raw:first-child {
+    left: 0;
+}
+
+.form-raw:last-child {
+    right: 5%;
+}
+
+.form-raw label{
+    margin-left: 10px;
+}
+
+.form-raw > input{
+    width: 60%;
+    height: 40px;
+
+    border: none;
+    background-color: #ededef;
+
+    font-size: 1.2em;
+}
+
+.form-content > textarea {
+    position: absolute;
+    top: 120px;
+    left: 0;
+
+    width: 93%;
+    height: 100px;
+    padding-top: 8px;
+    padding-left: 16px;
+
+    border: none;
+    background-color: #ededef;
+}
+
+.form-content > button {
+    position: absolute;
+    top: 250px;
+    left: 0;
+
+    width: 95%;
+    padding: 10px;
+
+    border: none;
+    background-color: #ededef;
+
+    font-size: 1.3em;
+}
+
+.form-content > button:hover {
+    background-color: #aaa;
+}
+
+.contact-us {
+
+    width: 100%;
+    height: 250px;
+    margin-top: -50px;
+    padding-top: 100px;
+
+    text-align: center;
+
+    color: #fff;
+    background-color: #32353e;
+}
+
+.contact-us > h2 {
+    margin-bottom: 10px;
+}
+
+.contact-us > p {
+    line-height: 18px;
+    margin-bottom: 20px;
+}
+
+#email {
+    border: none;
+    font-size: 1.2em;
+    width: 430px;
+    height: 40px;
+    padding-left: 10px;
+}
+
+#email:hover {
+    color: #fff;
+    background-color: #e74f4d;
+}
+
+#contact_submit {
+    position: relative;
+    right: 3px;
+    height: 40px;
+    width: 80px;
+    padding-left: 10px;
+    border: none;
+    font-size: 1.3em;
+    text-align: center;
+    color: #fff;
+    background-color: #6f7178;
+    letter-spacing: 10px;
+}
+
+#contact_submit:hover {
+    background-color: #aaa;
+}
+
+.share {
+    margin-top: 40px;
+    letter-spacing: 20px;
+}
+
+.black-footer {
+    width: 100%;
+    height: 85px;
+    line-height: 85px;
+    background-color: #2f2f38;
+    color: #fff;
+}
+
+.copyright {
+    margin-left: 80px;
+    float: left;
+}
+
+.top {
+    color: #fff;
+    margin-right: 30px;
+    float: right;
 }
