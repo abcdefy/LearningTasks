@@ -1,59 +1,75 @@
-module.exports = (function ( window, doc, undef ) {
-
-    var pubsubz ={};
+var pubsubz = (function ( window, doc, undef ) {
 
     var topics = {},
-        subUid = -1;
+        subUid = -1,
+        subscribe = function (topic, func ) {
+            var token;
 
-    pubsubz.publish = function ( topic, args ) {
-
-        // undefined check
-        if (!topics[topic]) {
-            return false;
-        }
-
-        setTimeout(function () {
-            var subscribers = topics[topic],
-                len = subscribers ? subscribers.length : 0;
-
-            while (len--) {
-                subscribers[len].func(topic, args);
+            // create new topic if target topic isn't exist
+            if (!topics[topic]) {
+                topics[topic] = [];
             }
-        }, 0);
 
-        return true;
+    		// add observer to observerlist(topics)
+            token = (++subUid).toString();
+            topics[topic].push({
+                context: this,
+                topic: topic,
+                token: token,
+                callback: func
+            });
 
-    };
+            return token;
+        },
+        publish = function (topic) {
+            var args,
+                len;
 
-    pubsubz.subscribe = function ( topic, func ) {
+            // undefined check
+            if (!topics[topic]) {
+                return false;
+            }
 
-        // undefined check
-        if (!topics[topic]) {
-            topics[topic] = [];
-        }
+            args = Array.prototype.slice.call(arguments);
+            len = topics[topic].length;
 
-		// add observer to observerlist(topics)
-        var token = (++subUid).toString();
-        topics[topic].push({
-            token: token,
-            func: func
-        });
-        return token;
-    };
+            for (var i = 0;i < len;i++) {
+                var subscription = topics[topic][i];
+                subscription.callback.apply(subscription.context, args);
+            }
 
-    pubsubz.unsubscribe = function ( token ) {
-        for (var m in topics) {
-            if (topics[m]) {
-                for (var i = 0, j = topics[m].length; i < j; i++) {
-                    if (topics[m][i].token === token) {
-                        topics[m].splice(i, 1);
-                        return token;
+            // chain pattern
+            return this;
+        },
+        unsubscribe = function (token) {
+            for (var m in topics) {
+                if (topics[m]) {
+                    for (var i = 0, j = topics[m].length; i < j; i++) {
+                        if (topics[m][i].token === token) {
+                            topics[m].splice(i, 1);
+                            return token;
+                        }
                     }
                 }
             }
-        }
-        return false;
-    };
 
-    return pubsubz;
-}( this, this.document, undefined ));
+            return false;
+        },
+        installTo = function (obj) {
+            obj.subscribe = subscribe;
+            obj.publish = publish;
+            obj.unsubscribe = unsubscribe;
+        };
+
+        return {
+            subscribe: subscribe,
+            publish: publish,
+            unsubscribe: unsubscribe,
+            installTo: installTo,
+            getTopic: function () {
+                console.log(topics);
+            }
+        };
+}(this, this.document, undefined));
+
+module.exports = pubsubz;
