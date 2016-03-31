@@ -1,19 +1,25 @@
-var pubsub = require('./pubsubz.js');
+var pubsub = require('./pubsubz.js'),
+    command = require('./command.js');
 
 (function () {
+    console.log('');
+    console.log('Observer Pattern');
+    
     // add observer to observerlist
     var testFirstSub = pubsub.subscribe( 'login', function (topic , data ) {
-        console.log(topic + ": " + data );
-    });
+            console.log( topic + ": " + data );
+        });
 
     // subject broadcast/notify, observer update
     pubsub.publish( 'login', 'hello world!' );
     pubsub.publish( 'login', ['test','a','b','c'] );
     pubsub.publish( 'login', [{'color':'blue'},{'text':'hello'}] );
 
-    pubsub.unsubscribe(testFirstSub);
+    setTimeout(function(){
+        pubsub.unsubscribe(testFirstSub);
+    }, 0);
 
-    // permanent subscribe because of not recording sub-token
+    // permanent subscribe
     pubsub.subscribe('sum', function (topic, data) {
         if (toString.apply(data) !== '[object Array]') {
             console.log('Please input array: * ' + data + ' * is not array!');
@@ -39,11 +45,16 @@ var pubsub = require('./pubsubz.js');
     pubsub.publish('sum', 'hello again!');
     pubsub.publish('sum', [1, 2, 3, 4, 5]);
     pubsub.publish('sum', ['a', 'b', 'c', 'd', 'e']);
+}());
 
-    // extend subscribe
-    pubsub.subscribe('login/extend', function (topic, name, age, date) {
-        console.log(topic + ": " + name+" - " + age + " - "  + date);
-    });
+(function () {
+    console.log('');
+    console.log('Command Pattern: ');
 
-    pubsub.publish('login/extend', 'sabertazimi', 17, new Date());
+    console.log(command.execute('isNull', null));             // true
+    console.log(command.execute('isNull', 'sabertazimi'));    // true
+    console.log(command.execute('isArray', new Array(5)));    // true
+    console.log(command.execute('isArray', 'sabertazimi'));   // true
+    console.log(command.execute('isString', 'sabertazimi'));  // true
+    console.log(command.execute('isString', 14800));
 }());
