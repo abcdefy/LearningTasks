@@ -3,48 +3,50 @@ var pubsub = require('./pubsubz.js'),
 
 (function () {
     console.log('');
-    console.log('Observer Pattern');
-    
+    console.log('Observer Pattern: ');
+
     // add observer to observerlist
     var testFirstSub = pubsub.subscribe( 'login', function (topic , data ) {
             console.log( topic + ": " + data );
         });
-
-    // subject broadcast/notify, observer update
-    pubsub.publish( 'login', 'hello world!' );
-    pubsub.publish( 'login', ['test','a','b','c'] );
-    pubsub.publish( 'login', [{'color':'blue'},{'text':'hello'}] );
-
-    setTimeout(function(){
-        pubsub.unsubscribe(testFirstSub);
-    }, 0);
-
     // permanent subscribe
     pubsub.subscribe('sum', function (topic, data) {
         if (toString.apply(data) !== '[object Array]') {
-            console.log('Please input array: * ' + data + ' * is not array!');
+            console.log(topic + ': Please input array: * ' + data + ' * is not array!');
         } else {
             var tmp = data.filter(function (item) {
-                    return toString.apply(item) === '[object Number]';
+                    return  command.execute('isNumber', item);
                 });
 
             if (tmp.length) {
                 var sum = tmp.reduce(function (previous, current) {
                     return previous + current;
                 }, 0);
-                console.log('sumof ' + data + ' : ' + sum);
+                console.log(topic + ': sumof ' + data + ' : ' + sum);
             } else {
-                console.log('Please input number array: * ' + data + ' * is not number array!');
+                console.log(topic + ': Please input number array: * ' + data + ' * is not number array!');
             }
         }
-
-        return this;
+    });
+    // advanced subscribe
+    pubsub.subscribe('login/extend', function (topic, name, age, date) {
+        console.log(topic + ': ' + name + ' - ' + age + ' - ' + date);
     });
 
+    // subject broadcast/notify, observer update
+    pubsub.publish( 'login', 'hello world!' );
+    pubsub.publish( 'login', [{'color':'blue'},{'text':'hello'}] );
+    pubsub.unsubscribe(testFirstSub);
     pubsub.publish( 'login', 'hello again!' );
+    console.log('');
+
     pubsub.publish('sum', 'hello again!');
     pubsub.publish('sum', [1, 2, 3, 4, 5]);
     pubsub.publish('sum', ['a', 'b', 'c', 'd', 'e']);
+    console.log('');
+
+    pubsub.publish('login/extend', 'sabertazimi', 17, new Date());
+    pubsub.publish('login/extend', 'archer', 500, 'DC 2000');
 }());
 
 (function () {

@@ -9,7 +9,10 @@ module.exports = (function () {
         return toString.apply(arr) === '[object Array]';
     };
     manager.isString = function (str) {
-        return toString.apply(str) ==='[object String]';
+        return toString.apply(str) === '[object String]';
+    };
+    manager.isNumber = function (num) {
+        return toString.apply(num) === '[object Number]';
     };
 
     // public api

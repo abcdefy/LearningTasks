@@ -66,9 +66,6 @@ var pubsubz = (function ( window, doc, undef ) {
             publish: publish,
             unsubscribe: unsubscribe,
             installTo: installTo,
-            getTopic: function () {
-                console.log(topics);
-            }
         };
 }(this, this.document, undefined));
 
