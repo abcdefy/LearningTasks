@@ -1,5 +1,6 @@
 var pubsub = require('./pubsubz.js'),
     command = require('./command.js');
+    factory = require('./factorymethod.js');
 
 (function () {
     console.log('');
@@ -59,4 +60,51 @@ var pubsub = require('./pubsubz.js'),
     console.log(command.execute('isArray', 'sabertazimi'));   // true
     console.log(command.execute('isString', 'sabertazimi'));  // true
     console.log(command.execute('isString', 14800));
+}());
+
+(function () {
+    console.log('');
+    console.log('Factory Method: ');
+
+    var vc = new factory.vehicleFactory(),
+        car = vc.create({
+            type: 'car',
+            speed: 20
+        }),
+        truck = vc.create({
+            type: 'truck',
+            speed: 30
+        });
+
+    car.run();
+    car.run(44);
+    car.run();
+    car.run('');
+    car.run();
+
+    car.run = function () {
+        console.log('privare run function');
+    };
+    car.run();
+
+    // change public features
+    car.addFeature('showDoors', function () {
+        if (this && this.doors) {
+            console.log(this.doors);
+        }
+    });
+    var newCar = vc.create({type: 'car'});
+    car.reform('run', function () {
+        console.log('static run function');
+    });
+
+    car.run();
+    newCar.run();
+    newCar.showDoors();
+
+    truck.withColor();
+    truck.withColor('Red');
+    truck.withColor();
+    truck.withColor(123);
+    truck.withColor();
 }());
