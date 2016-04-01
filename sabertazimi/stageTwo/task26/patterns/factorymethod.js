@@ -38,6 +38,7 @@ module.exports = (function () {
 			}
 		}
 		// provide a function to change other public features
+		// decorator pattern
 		function _reform(funcName, newFunc) {
 			if (typeof this[funcName] === 'function' || typeof this.prototype[funcName] === 'function') {
 				delete this[funcName];
