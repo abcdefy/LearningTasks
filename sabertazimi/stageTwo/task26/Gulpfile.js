@@ -53,6 +53,11 @@ var handleError = function (err) {
 //     });
 // });
 
+gulp.task('bower', function () {
+    gulp.src('./bower_components/jquery/dist/jquery.min.js')
+        .pipe(gulp.dest('./dist/js/'));
+});
+
 gulp.task('js', function () {
     var combined = combiner.obj([
         gulp.src([
@@ -65,7 +70,7 @@ gulp.task('js', function () {
         concat('main.js'),
         sourcemaps.init(),
         rename({ suffix: '.min' }),
-        uglify(),
+        // uglify(),
         sourcemaps.write('./'),
         gulp.dest('dist/js/')
     ]);
@@ -262,4 +267,4 @@ gulp.task('templates', function () {
 });
 
 
-gulp.task('default', ['js', 'css', 'html', 'image', 'copy', 'templates']);
+gulp.task('default', ['bower', 'js', 'css', 'html', 'image', 'copy', 'templates']);
