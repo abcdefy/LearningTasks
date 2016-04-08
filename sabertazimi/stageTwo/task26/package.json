@@ -1,0 +1,26 @@
+{
+  "name": "task26",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weblearningunion/LearningTasks.git"
+  },
+  "keywords": [
+    "ife",
+    "font-end",
+    "design pattern",
+    "learning",
+    "hust"
+  ],
+  "author": "sabertazimi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/weblearningunion/LearningTasks/issues"
+  },
+  "homepage": "https://github.com/weblearningunion/LearningTasks#readme"
+}
