@@ -1,6 +1,6 @@
 {
   "name": "task26",
-  "description": "",
+  "description": "task 26",
   "main": "index.js",
   "authors": [
     "sabertazimi"
@@ -9,8 +9,6 @@
   "keywords": [
     "ife",
     "font-end",
-    "design",
-    "pattern",
     "learning",
     "hust"
   ],
