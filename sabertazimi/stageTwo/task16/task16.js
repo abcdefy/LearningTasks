@@ -8,7 +8,7 @@
  */
 var aqiData = {},
     alphaReg = /^[\u4e00-\u9fa5aa-zA-z]+$/i,
-    numReg = /^[1-9]*$/i,
+    numReg = /^[0-9]+$/i,
     nullReg = /[(^\s+)(\s+$)]/g,
     cityInput = document.getElementById("aqi-city-input"),
     valueInput = document.getElementById("aqi-value-input"),
