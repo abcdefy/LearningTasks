@@ -1,40 +1,42 @@
-var pubsubz = (function ( window, doc, undef ) {
-
-    var topics = {},
+/**
+ * mediator - 中介者，负责传送指令
+ */
+var mediator = (function ( global, doc, undef ) {
+    var orbits = {},
         subUid = -1,
-        subscribe = function (topic, func ) {
+
+        subscribe = function (orbit, func ) {
             var token;
 
-            // create new topic if target topic isn't exist
-            if (!topics[topic]) {
-                topics[topic] = [];
+            if (!orbits[orbit]) {
+                orbits[orbit] = [];
             }
 
-    		// add observer to observerlist(topics)
+    		// add observer to observerlist(orbits)
             token = (++subUid).toString();
-            topics[topic].push({
+            orbits[orbit].push({
                 context: this,
-                topic: topic,
+                orbit: orbit,
                 token: token,
                 callback: func
             });
 
             return token;
         },
-        publish = function (topic) {
+        publish = function (orbit) {
             var args,
                 len;
 
             // undefined check
-            if (!topics[topic]) {
+            if (!orbits[orbit]) {
                 return false;
             }
 
             args = Array.prototype.slice.call(arguments);
-            len = topics[topic].length;
+            len = orbits[orbit].length;
 
             for (var i = 0;i < len;i++) {
-                var subscription = topics[topic][i];
+                var subscription = orbits[orbit][i];
                 subscription.callback.apply(subscription.context, args);
             }
 
@@ -42,31 +44,22 @@ var pubsubz = (function ( window, doc, undef ) {
             return this;
         },
         unsubscribe = function (token) {
-            for (var m in topics) {
-                if (topics[m]) {
-                    for (var i = 0, j = topics[m].length; i < j; i++) {
-                        if (topics[m][i].token === token) {
-                            topics[m].splice(i, 1);
+            for (var m in orbits) {
+                if (orbits[m]) {
+                    for (var i = 0, j = orbits[m].length; i < j; i++) {
+                        if (orbits[m][i].token === token) {
+                            orbits[m].splice(i, 1);
                             return token;
                         }
                     }
                 }
             }
-
             return false;
-        },
-        installTo = function (obj) {
-            obj.subscribe = subscribe;
-            obj.publish = publish;
-            obj.unsubscribe = unsubscribe;
         };
 
         return {
             subscribe: subscribe,
             publish: publish,
             unsubscribe: unsubscribe,
-            installTo: installTo,
         };
-}(this, this.document, undefined));
-
-module.exports = pubsubz;
+}(window, document));

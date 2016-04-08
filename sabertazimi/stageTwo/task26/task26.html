@@ -23,32 +23,36 @@
             </ul>
         </aside>
         <footer class="panel">
-            <ul>
-                <li>
+            <ul class="panel-list">
+                <li class="panel-list-item">
                     <span class="text-red">第一轨道</span>
                     <button type="button" class="create">创建飞船</button>
-                    <button type="button" disabled="disabled" class="launch">发射</button>
+                    <button type="button" disabled="disabled" class="launch">发射飞船</button>
+                    <button type="button" disabled="disabled" class="destroy">销毁飞船</button>
                     <input type="number" title="速度" placeholder="速度" value="1" disabled="disabled"/>
                     <button type="button" disabled="disabled" class="rate">设置速度</button>
                 </li>
-                <li>
+                <li class="panel-list-item">
                     <span class="text-red">第二轨道</span>
                     <button type="button" class="create">创建飞船</button>
-                    <button type="button" disabled="disabled" class="launch">发射</button>
+                    <button type="button" disabled="disabled" class="launch">发射飞船</button>
+                    <button type="button" disabled="disabled" class="destroy">销毁飞船</button>
                     <input type="number" title="速度" placeholder="速度" value="1" disabled="disabled"/>
                     <button type="button" disabled="disabled" class="rate">设置速度</button>
                 </li>
-                <li>
+                <li class="panel-list-item">
                     <span class="text-red">第三轨道</span>
                     <button type="button" class="create">创建飞船</button>
-                    <button type="button" disabled="disabled" class="launch">发射</button>
+                    <button type="button" disabled="disabled" class="launch">发射飞船</button>
+                    <button type="button" disabled="disabled" class="destroy">销毁飞船</button>
                     <input type="number" title="速度" placeholder="速度" value="1" disabled="disabled"/>
                     <button type="button" disabled="disabled" class="rate">设置速度</button>
                 </li>
-                <li>
+                <li class="panel-list-item">
                     <span class="text-red">第四轨道</span>
                     <button type="button" class="create">创建飞船</button>
-                    <button type="button" disabled="disabled" class="launch">发射</button>
+                    <button type="button" disabled="disabled" class="launch">发射飞船</button>
+                    <button type="button" disabled="disabled" class="destroy">销毁飞船</button>
                     <input type="number" title="速度" placeholder="速度" value="1" disabled="disabled"/>
                     <button type="button" disabled="disabled" class="rate">设置速度</button>
                 </li>
@@ -57,7 +61,9 @@
 
         <script src="./bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
         <script src="./js/logger.js" charset="utf-8"></script>
+        <script src="./js/mediator.js" charset="utf-8"></script>
         <script src="./js/spaceship.js" charset="utf-8"></script>
+        <script src="./js/commander.js" charset="utf-8"></script>
         <script src="./js/task26.js" charset="utf-8"></script>
     </body>
 </html>

@@ -1,11 +1,14 @@
+/**
+ *  spaceship prototype
+ */
 function spaceship(orbit) {
     var obj = {
         isFly: falsem,
         isGone: false,
         leftEnergy: 100,
+        flySpeed: 1,
         restoreSpeed: 5,
         consumeSpeed: 10,
-        flySpeed: 1,
         angle: 0,
 
         driveSys: {
@@ -53,7 +56,7 @@ function spaceship(orbit) {
         },
 
         transferSys: {
-            messageReceiver: function (msg) {
+            messageReceiver: function (orbit, msg) {
                 switch (msg.command) {
                     case 'launch':
                         obj.driveSys.launch();
