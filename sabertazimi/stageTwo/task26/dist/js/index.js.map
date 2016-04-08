@@ -1,1 +1,0 @@
-{"version":3,"sources":["index.js"],"names":["global","doc","undef","logger","log","window","document"],"mappings":"CAAC,SAAUA,EAAQC,EAAKC,GACpBC,OAAOC,IAAI,oBACbC,OAAQC","file":"index.js","sourcesContent":["(function (global, doc, undef) {\n    logger.log('test for logger');\n}(window, document));\n"],"sourceRoot":"/source/"}
