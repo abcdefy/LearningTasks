@@ -52,7 +52,6 @@ gulp.task('watchjs', function () {
                 'src/js/mediator.js',
                 'src/js/spaceship.js',
                 'src/js/commander.js',
-                'src/js/index.js',
             ]),
             concat('main.js'),
             sourcemaps.init(),
