@@ -5,10 +5,11 @@
 var logger = (function(global, doc, undef) {
     function _log(msg) {
         if (msg) {
-            $('.logger-list').last().append('<li "class="logger-list-item"> - ' + new Date() + ': ' + msg + ' - </li>');
+            setTimeout(function(){
+                $('.logger-list').last().append('<li "class="logger-list-item"> - ' + new Date() + ': ' + msg + ' - </li>');
+            }, 500);
         }
     }
-
     return {
         log: _log
     };

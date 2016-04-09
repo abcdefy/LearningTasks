@@ -5,7 +5,7 @@ var mediator = (function ( global, doc, undef ) {
     var orbits = {},
         subUid = -1,
 
-        subscribe = function (orbit, func ) {
+        subscribe = function (orbit, obj ) {
             var token;
 
             if (!orbits[orbit]) {
@@ -15,10 +15,10 @@ var mediator = (function ( global, doc, undef ) {
     		// add observer to observerlist(orbits)
             token = (++subUid).toString();
             orbits[orbit].push({
-                context: this,
+                context: obj,
                 orbit: orbit,
                 token: token,
-                callback: func
+                callback: obj.transferSys.messageReceiver
             });
 
             return token;
