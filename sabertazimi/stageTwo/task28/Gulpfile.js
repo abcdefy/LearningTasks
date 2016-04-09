@@ -54,9 +54,10 @@ gulp.task('watchjs', function () {
                 'src/js/commander.js',
             ]),
             concat('main.js'),
+            gulp.dest(paths.distDir),
             sourcemaps.init(),
             rename({ suffix: '.min' }),
-            // uglify(),
+            uglify(),
             sourcemaps.write('./'),
             gulp.dest(paths.distDir)
         ]);
@@ -73,12 +74,12 @@ gulp.task('js', function () {
             'src/js/mediator.js',
             'src/js/spaceship.js',
             'src/js/commander.js',
-            'src/js/index.js',
         ]),
         concat('main.js'),
+        gulp.dest('dist/js/'),
         sourcemaps.init(),
         rename({ suffix: '.min' }),
-        // uglify(),
+        uglify(),
         sourcemaps.write('./'),
         gulp.dest('dist/js/')
     ]);
