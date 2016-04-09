@@ -10,16 +10,21 @@ var shipFactory = (function (global, doc, undef) {
             isFly: false,
             isGone: false,
             leftEnergy: 100,
-            flySpeed: options.flySpeed || 1,
-            restoreSpeed: options.flySpeed || 5,
+            flySpeed: options.flySpeed || 20,
+            restoreSpeed: options.restoreSpeed || 20,
             consumeSpeed: options.consumeSpeed || 10,
             angle: 0,
+            // interval animation id
+            launchId: 0,
+            stopId: 0,
 
             driveSys: {
                 launch: function () {
                     if (obj.leftEnergy > 0) {
                         obj.isFly = true;
-                        var launchId = setInterval(function(){
+                        clearInterval(obj.launchId);
+                        clearInterval(obj.stopId);
+                        obj.launchId = setInterval(function(){
                             obj.driveSys.fly();
                             obj.energySys.consume();
                         }, 1000);
@@ -27,15 +32,15 @@ var shipFactory = (function (global, doc, undef) {
                 },
                 stop: function () {
                     obj.isFly = false;
-                    clearInterval(stopId);
-                    var stopId = setInterval(function(){
+                    clearInterval(obj.launchId);
+                    clearInterval(obj.stopId);
+                    obj.stopId = setInterval(function(){
                         obj.energySys.restore();
                     }, 1000);
                 },
                 fly: function () {
                     if (obj.isFly) {
-                        obj.angle += obj.speed;
-                        console.log(obj.angle);
+                        obj.angle += obj.flySpeed;
                     }
                     obj.angle %= 360;
                     $('#ship' + obj.orbit).css('transform', 'rotate(' + obj.angle + 'deg)');
@@ -50,6 +55,7 @@ var shipFactory = (function (global, doc, undef) {
                     if (obj.leftEnergy > 100) {
                         obj.leftEnergy = 100;
                     }
+                    $('#ship' + obj.orbit).text(obj.leftEnergy + '%');
                 },
                 consume: function () {
                     if (obj.isFly) {
@@ -58,8 +64,13 @@ var shipFactory = (function (global, doc, undef) {
                     if (obj.leftEnergy <= 0) {
                         obj.isFly = false;
                         obj.leftEnergy = 0;
+                        clearInterval(obj.launchId);
+                        clearInterval(obj.stopId);
+                        obj.stopId = setInterval(function(){
+                            obj.energySys.restore();
+                        }, 1000);
                     }
-                    $('#ship' + obj.orbit).val(obj.leftEnergy);
+                    $('#ship' + obj.orbit).text(obj.leftEnergy + '%');
                 }
             },
 
