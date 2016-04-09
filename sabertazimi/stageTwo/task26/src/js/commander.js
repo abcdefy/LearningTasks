@@ -4,14 +4,12 @@
 var commander = (function (global, doc, undef) {
     var commandList = ['launch', 'stop', 'rate', 'destroy'];
 
-    $('panel-list-item').click(function (e) {
+    $('.panel-list-item').click(function (e) {
         var event = e || window.event,
             target = event.target || event.srcElement;
 
-            console.log(target.innerHTML);
-
+            console.log(target.class);
         if (target.nodeName.toLowerCase() == "button") {
-            console.log(target.innerHTML);
         }
     });
 
