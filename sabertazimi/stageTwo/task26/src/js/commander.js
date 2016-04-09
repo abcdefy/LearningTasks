@@ -14,7 +14,7 @@ var commander =  (function (global, doc, undef) {
         rate: {
             id: 3,
             command: 'rate',
-            flySpeed: 20,
+            flySpeed: 1,
         },
         destroy: {
             id: 4,
@@ -83,7 +83,7 @@ var commander =  (function (global, doc, undef) {
             switch ($target.attr('class')) {
                 case 'create':
                     if (!commander.getState(index)) {
-                        shipFactory.create({orbit: index, flySpeed: 20});
+                        shipFactory.create({orbit: index});
                         commander.setState(index);
                         logger.log((index + 1) + '号飞船创建成功');
                     }

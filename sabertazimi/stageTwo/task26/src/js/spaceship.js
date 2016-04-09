@@ -10,9 +10,9 @@ var shipFactory = (function (global, doc, undef) {
             isFly: false,
             isGone: false,
             leftEnergy: 100,
-            flySpeed: options.flySpeed || 20,
-            restoreSpeed: options.restoreSpeed || 20,
-            consumeSpeed: options.consumeSpeed || 10,
+            flySpeed: options.flySpeed || 1,
+            restoreSpeed: options.restoreSpeed || 5,
+            consumeSpeed: options.consumeSpeed || 3,
             angle: 0,
             // interval animation id
             launchId: 0,
@@ -27,7 +27,7 @@ var shipFactory = (function (global, doc, undef) {
                         obj.launchId = setInterval(function(){
                             obj.driveSys.fly();
                             obj.energySys.consume();
-                        }, 1000);
+                        }, 200);
                     }
                 },
                 stop: function () {
@@ -36,7 +36,7 @@ var shipFactory = (function (global, doc, undef) {
                     clearInterval(obj.stopId);
                     obj.stopId = setInterval(function(){
                         obj.energySys.restore();
-                    }, 1000);
+                    }, 200);
                 },
                 fly: function () {
                     if (obj.isFly) {
@@ -68,7 +68,7 @@ var shipFactory = (function (global, doc, undef) {
                         clearInterval(obj.stopId);
                         obj.stopId = setInterval(function(){
                             obj.energySys.restore();
-                        }, 1000);
+                        }, 200);
                     }
                     $('#ship' + obj.orbit).text(obj.leftEnergy + '%');
                 }
@@ -79,7 +79,7 @@ var shipFactory = (function (global, doc, undef) {
                     obj.isGone = true;
                     setTimeout(function () {
                         $('#ship' + obj.orbit).remove();
-                    }, 1000);
+                    }, 200);
                 }
             },
 
@@ -113,7 +113,7 @@ var shipFactory = (function (global, doc, undef) {
             mediator.subscribe(obj.orbit, obj);
             setTimeout(function () {
                 $('.space').append('<button class="spaceship" type="button" id="ship' + obj.orbit + '">100%</button>');
-            }, 1000);
+            }, 200);
             return obj;
         }
     }
